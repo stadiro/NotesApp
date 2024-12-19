@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Дата заметки -->
+    <TextView
+        android:id="@+id/noteDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Тогдатотогдато"
+        android:textSize="14sp"
+        android:textColor="#888888"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Текст напоминания -->
+    <TextView
+        android:id="@+id/reminderText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Напомним xxx"
+        android:textSize="14sp"
+        android:textColor="#FFA500"
+        app:layout_constraintTop_toBottomOf="@id/noteDate"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="4dp" />
+
+    <!-- Содержание заметки -->
+    <TextView
+        android:id="@+id/noteContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Заметка"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/reminderText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp" />
+
+    <!-- Кнопка Редактировать -->
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Редактировать"
+        app:layout_constraintTop_toBottomOf="@id/noteContent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Кнопка Удалить -->
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Удалить"
+        app:layout_constraintTop_toBottomOf="@id/noteContent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
