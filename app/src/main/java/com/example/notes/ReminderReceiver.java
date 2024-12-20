@@ -10,7 +10,7 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 
 public class ReminderReceiver extends BroadcastReceiver {
-    private static final String CHANNEL_ID = "REMINDER_CHANNEL";
+    private static final String CHANNEL_ID = "reminder_channel";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -21,7 +21,7 @@ public class ReminderReceiver extends BroadcastReceiver {
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        // Создаем канал уведомлений (для Android 8.0+)
+        // Создание канала уведомлений, если он еще не создан
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     CHANNEL_ID,
@@ -29,7 +29,9 @@ public class ReminderReceiver extends BroadcastReceiver {
                     NotificationManager.IMPORTANCE_HIGH
             );
             channel.setDescription("Канал для напоминаний");
-            notificationManager.createNotificationChannel(channel);
+            if (notificationManager != null) {
+                notificationManager.createNotificationChannel(channel);
+            }
         }
 
         // Создаем PendingIntent для перехода по уведомлению
@@ -49,9 +51,8 @@ public class ReminderReceiver extends BroadcastReceiver {
                 .setContentIntent(pendingIntent) // Открыть экран по клику
                 .setDefaults(NotificationCompat.DEFAULT_VIBRATE | NotificationCompat.DEFAULT_SOUND) // Вибрация и звук по умолчанию
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC); // Уведомление будет отображаться на экране, даже если устройство заблокировано
-                //.setFullScreenIntent(pendingIntent, false); // Показывает уведомление без перехода в приложение
 
         notificationManager.notify((int) System.currentTimeMillis(), notificationBuilder.build());
-
     }
 }
+
